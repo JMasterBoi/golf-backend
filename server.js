@@ -26,6 +26,7 @@ const usersDB = db.collection("users")
 const itemsDB = db.collection("items")
 
 app.post("/api/sign-in", async (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     const email = req.body.email
     const name = req.body.name
 
@@ -38,6 +39,7 @@ app.post("/api/sign-in", async (req, res) => {
 })
 
 app.post("/api/create-item", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     const itemName = req.body.itemName;
     const itemDescription = req.body.itemDescription;
     const startingBid = req.body.startingBid;
@@ -56,12 +58,14 @@ app.post("/api/create-item", (req, res) => {
 })
 
 app.post("/api/get-items", async (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     itemsDB.find().toArray().then((response) => {
         res.send(response)
     })
 })
 
 app.post("/api/bid", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     console.log(req.body)
     const itemId = req.body.itemId
     const userId = req.body.userId
